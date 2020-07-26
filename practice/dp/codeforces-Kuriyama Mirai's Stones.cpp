@@ -13,7 +13,35 @@ using namespace std;
 #define br cout<<endl;
 #define fo for(int i=0;i<n;i++)
 
+
+///solved using prefix sum
+
 void solve(){
+    ll n;
+    cin>>n;
+    ll a[n+1],b[n+1];
+    a[0]=0;b[0]=0;
+
+    for(ll i=1;i<n+1;i++){cin>>a[i];b[i]=a[i];}
+
+    sort(b,b+n+1);
+    for(ll i=2;i<=n;i++){
+        a[i]+=a[i-1];
+        b[i]+=b[i-1];
+    }
+
+    ll m;
+    cin>>m;
+
+    for(ll i=0;i<m;i++){
+        ll op,l,r;
+        cin>>op>>l>>r;
+        if(op==1){
+            cout<<a[r]-a[l-1]<<endl;
+        }
+        else cout<<b[r]-b[l-1]<<endl;
+    }
+
     br;
 }
 
