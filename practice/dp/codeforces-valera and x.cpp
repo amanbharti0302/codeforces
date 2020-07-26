@@ -16,7 +16,29 @@ using namespace std;
 
 
 void solve(){
-    br;
+    int n;
+    cin>>n;
+
+    int ch =0;
+    char d;
+    char r;
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            char x;
+            cin>>x;
+            if(i==0&&j==0){d=x;continue;}
+            if(i==0&&j==1){r=x;continue;}
+
+            if((i==j||i+j==n-1)&&x!=d){ch=1;continue;}
+            if((i!=j&&i+j!=n-1)&&x!=r){ch=1;}
+        }
+    }
+
+    if(d==r)ch=1;
+    
+    if(ch==1)cout<<"NO"<<endl;
+    else cout<<"YES"<<endl;
 }
 
 int main(){

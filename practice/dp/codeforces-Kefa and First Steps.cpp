@@ -14,8 +14,24 @@ using namespace std;
 #define fo for(int i=0;i<n;i++)
 
 
+//similar to kadanes algorithm
+int maxsumarray(int a[],int n){
+    int lmax=1,gmax=1,lastnum=a[0];
+    
+    for(int i=1;i<n;i++){
+        a[i]>=lastnum?lmax++:lmax=1;
+        lastnum=a[i];
+        gmax = max(lmax,gmax);
+    }
+    return gmax;
+}
 
 void solve(){
+    int n;
+    cin>>n;
+    int a[n];
+    fo{cin>>a[i];}
+    cout<<maxsumarray(a,n);
     br;
 }
 
