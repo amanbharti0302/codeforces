@@ -15,9 +15,24 @@ using namespace std;
 #define mod 1000000007
 
 
+ll dp[10000000];
+ll pr[10000000];
 
+ll cal(ll n,ll k){
+    if(n==0)return 1;
+
+    if(dp[n]!=-1)return dp[n];
+
+    ll sum=0;
+    if(n>=k)sum=(sum+cal(n-k,k))%mod;
+    sum=(sum+cal(n-1,k))%mod;
+    return dp[n]=sum;
+}
 
 void solve(int k){
+    ll a,b;
+    cin>>a>>b;
+    cout<<(pr[b]-pr[a-1]+mod)%mod;
     br;
 }
 
@@ -30,9 +45,15 @@ int main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t;
+    memset(dp,-1,sizeof(dp));
+    ll t,k;
+    cin>>t>>k;
+    
+    pr[0]=0;
+    for(ll i=1;i<10000000;i++){pr[i] = (pr[i-1]+cal(i,k))%mod;}
+    
     while(t-->0)
-    solve();
+    solve(k);
 
     #ifdef home
         eprintf("Time: %d ms\n", (int)(clock() * 1000. / CLOCKS_PER_SEC));
