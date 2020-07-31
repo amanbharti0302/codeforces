@@ -2,7 +2,7 @@
 //coded by AMAN BHARTI NIT PATNA
 //ALL RIGHTS RESERVED
 //ECE 2K18
-// https://codeforces.com/problemset/problem/546/D
+
 
 #include<bits/stdc++.h>
 using namespace std;
