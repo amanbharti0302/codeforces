@@ -2,12 +2,15 @@
 //coded by AMAN BHARTI NIT PATNA
 //ALL RIGHTS RESERVED
 //ECE 2K18
+//https://codeforces.com/contest/1343
+//B. ARRAY WALk
+//solved by dp
 
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define home
+//#define home
 #define TASK "soln"
 #define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
 #define ll long long int
@@ -15,19 +18,21 @@ using namespace std;
 #define fo for(int i=0;i<n;i++)
 #define mod 1000000007
 
-int dp[10000][10000];
+int dp[100008][7];
 
 int cal(int a[],int n,int k,int z,int p){
-    if(p<=0||p>n||k<=0)return 0;
+    if(p<=0||p>n||k<0)return 0;
 
+    if(dp[k][z]!=-1)return dp[k][z];
 
-    if(z>1)return a[p]+max(cal(a,n,k-1,z,p+1),cal(a,n,k-1,z-1,p-1));
+    if(z>=1)return dp[k][z] = a[p]+max(cal(a,n,k-1,z,p+1),cal(a,n,k-1,z-1,p-1));
 
-    return a[p]+cal(a,n,k-1,z,p+1);
+    return dp[k][z] =  a[p]+cal(a,n,k-1,z,p+1);
 }
 
 
 void solve(){
+    memset(dp,-1,sizeof(dp));
     int n,k,z;
     cin>>n>>k>>z;
     int a[n+1];
