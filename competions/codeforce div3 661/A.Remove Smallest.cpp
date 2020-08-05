@@ -6,7 +6,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define home
+//#define home
 #define TASK "soln"
 #define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
 #define ll long long int
@@ -15,40 +15,22 @@ using namespace std;
 #define foo for(int i=1;i<=n;i++)
 #define mod 1000000007
 
-void cal(int n,string s)
-{
-    vector<int> mem;
-    int z=1,o=1;
-    
-    int i=0;
-    while (i<n)
-    {   
-        if(s[i]=='0'){mem.push_back(z);z++;o--;o=max(o,1);if(z-1<o)z=o;}
-        if(s[i]=='1'){mem.push_back(o);o++;z--;z=max(z,1);if(o-1<z)o=z;}
-        i++;
-    }
 
-    int maxm =0;
-    for(int i=0;i<mem.size();i++){
-        if(mem[i]>maxm)maxm=mem[i];
-    }
-    
-    cout<<maxm<<endl;
-    for(int i=0;i<mem.size();i++){
-        cout<<mem[i]<<" ";
-    }
-    br;
-
-}
 
 void solve(){
     int n;
     cin>>n;
-    string s;
-    cin>>s;
+    int a[n];
+    fo{cin>>a[i];}
+    sort(a,a+n);
 
-    cal(n,s);
-    
+    if(n==1){cout<<"YES"<<endl;return;}
+
+    for(int i=1;i<n;i++){
+        if(a[i]-a[i-1]>1){cout<<"NO"<<endl;return;}
+    }
+
+    cout<<"YES"<<endl;
 }
 
 int main(){
