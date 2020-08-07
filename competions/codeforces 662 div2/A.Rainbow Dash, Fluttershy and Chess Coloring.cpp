@@ -6,7 +6,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define home
+//#define home
 #define TASK "soln"
 #define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
 #define pb push_back
@@ -16,24 +16,10 @@ using namespace std;
 #define foo for(int i=1;i<=n;i++)
 #define mod 1000000007
 
-ll b[100008];
-
 void solve(){
-    memset(b,0,sizeof(b));
     ll n;
     cin>>n;
-    ll a[n];
-    ll maxm=0;
-    fo{cin>>a[i];b[a[i]]++;maxm = max(b[a[i]],maxm);}
-
-    ll cntmaxm=0,rem=0;
-    
-    for(int i=0;i<100008;i++){if(b[i]==maxm)cntmaxm++; else rem++;}
-
-    rem+=rem/maxm;
-    cntmaxm--;
-    cntmaxm+=rem;
-    cout<<cntmaxm;
+    cout<<(n/2)+1;
     br;
 }
 
