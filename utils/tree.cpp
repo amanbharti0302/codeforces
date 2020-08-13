@@ -18,3 +18,4 @@ void inordertraverse(Node *root)
     cout<<root->data<<" ";
     inordertraverse(root->right);
 }
+

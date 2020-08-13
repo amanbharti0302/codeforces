@@ -69,9 +69,7 @@ void solve()
     Graph<int> g;
 
     for(int i=0;i<36;i++){
-        for(int 
-        
-        dice =1;dice<=6;dice++){
+        for(int dice =1;dice<=6;dice++){
             int j= i+dice;
             j+=board[j];
 
@@ -85,8 +83,6 @@ void solve()
     g.bfs(0,36);
     br;
 }
-
-
 int main()
 {
 	#ifdef home

@@ -1,85 +1,42 @@
-//CODEFORCES:-
-//coded by AMAN BHARTI NIT PATNA
-//ALL RIGHTS RESERVED
-//ECE 2K18
-
-#include<bits/stdc++.h>
-using namespace std;
-
-#define home
-#define TASK "soln"
-#define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
-#define ll long long int
-#define br cout<<endl;
-#define fo for(int i=0;i<n;i++)
-#define foo for(int i=1;i<=n;i++)
-#define mod 1000000007
-ll dp[1000][1000];
-double PI = 3.141592653589;
-
-int check=1;
-
-int dfs(vector<int> adj[],int v, bool visited[],int p[],int h[],int total){
-    visited[v] = true;
-    // cout<<v<<" ";
-
-    vector <int> :: iterator i;
-    for(i = adj[v].begin(); i!= adj[v].end();++i){
-        if(!visited[*i])dfs(adj,*i,visited,p,h,total);
-    }
-
-    if ((p[v] + h[v]) % 2 == 1)check = 0;
-    int g = (p[v] + h[v]) / 2;
-    if(g>=0 && g<= p[v]){}
-    else check=0;
-    
-
-}
-
-void solve(){
-    int n,m;
-    cin>>n>>m;
-    int p[n+1],h[n+1];
-    foo{cin>>p[i];}
-    foo{cin>>h[i];}
-
-    vector <int> adj[n+1];
-
-    for(int i=0;i<n-1;i++){
-        int a,b;
-        cin>>a>>b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
-    }
-
-    bool *visited = new bool[n+1]; 
-    for (int i = 0; i < n+1; i++)visited[i] = false; 
-
-    int ch = dfs(adj,1,visited,p,h,m);
-
-    //int ch = DFS(adj,1,n+1,p,h,m);
-    if(!ch)cout<<"NO";
-    else cout<<"YES";
-    br;
-}
-
-int main(){
-	#ifdef home
-        assert(freopen(TASK".in","r",stdin));
-        assert(freopen(TASK".out","w",stdout));
-    #endif
-
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int t;
-    cin>>t;
-    while(t-->0)
-    solve();
-
-    #ifdef home
-        eprintf("Time: %d ms\n", (int)(clock() * 1000. / CLOCKS_PER_SEC));
-    #endif
-
+bool compare(vector<int> a,vector<int> b){
+    if(a[2]>b[2])return 1;
     return 0;
+}
+
+int Solution::solve(int A, vector<vector<int> > &B, int C) {
+    int sum=0;
+    
+    sort(B.begin(),B.end(),compare);
+    
+    for(int i=0;i<B.size();i++){
+        if(C>0){B[i][2]=0;C--;}
+    }
+    
+    unordered_map <int ,vector<pair<int,int>>> l;
+    
+    l[1].push_back(make_pair(1,0);
+    
+    for(int i=0;i<B.size();i++){
+        l[B[i][0]].push_back(make_pair(B[i][1],B[i][2]));
+    }
+    
+    
+    int visited[A+1]={0};
+    queue<pair<int,int>> Q;
+    visited[1]=1;
+    Q.push(l[1]);
+    
+    while(!Q.empty()){
+        pair<int,int> x;
+        x=Q.front();
+        sum+=x.second;
+        Q.pop();
+        
+        for(auto i:l[x.first]){
+            i.second +=x.second;
+            Q.push(i);
+        }
+    }
+    
+    return sum;
 }
