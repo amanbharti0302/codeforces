@@ -1,3 +1,6 @@
+//https://codeforces.com/contest/1365/problem/D
+//solved using dfs and flood fill algorithm
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -78,8 +81,6 @@ void solve()
         }
     }
 
-    //cout<<" lol"<<" ";
-    // br;
 
     if(ans==0){cout<<"NO"<<endl;return;}
     if(cntgood>0&&a[n][m]=='#'){cout<<"NO"<<endl;return;}
