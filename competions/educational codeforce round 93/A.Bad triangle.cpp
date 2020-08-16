@@ -2,7 +2,6 @@
 //coded by AMAN BHARTI NIT PATNA
 //ALL RIGHTS RESERVED
 //ECE 2K18
-///////////////////SOLVED AFTER WATCHING TUTORIAL
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -19,22 +18,15 @@ using namespace std;
 
 
 void solve(){
-    int n;
+    ll n;
     cin>>n;
-    string s;
-    cin>>s;
-    map<int,int> m;
-    ll total =0;
-    m[0]=1;
-    int sum=0;
-    for(int i=0;i<n;i++){
-        int x=s[i]-'0';
-        x--;
-        sum+=x;
-        total+=(ll)m[sum];
-        m[sum]++;
+    ll a[n];
+    fo{cin>>a[i];}
+
+    if(a[0]+a[1]<=a[n-1]){
+        cout<<1<<" "<<2<<" "<<n<<endl;
     }
-    cout<<total<<endl;
+    else cout<<-1<<endl;
 }
 
 int main(){

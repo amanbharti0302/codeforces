@@ -2,7 +2,6 @@
 //coded by AMAN BHARTI NIT PATNA
 //ALL RIGHTS RESERVED
 //ECE 2K18
-///////////////////SOLVED AFTER WATCHING TUTORIAL
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -19,22 +18,31 @@ using namespace std;
 
 
 void solve(){
-    int n;
-    cin>>n;
     string s;
     cin>>s;
-    map<int,int> m;
-    ll total =0;
-    m[0]=1;
-    int sum=0;
-    for(int i=0;i<n;i++){
-        int x=s[i]-'0';
-        x--;
-        sum+=x;
-        total+=(ll)m[sum];
-        m[sum]++;
+
+    vector<int> ar;
+
+    int i=0;
+    while(i<s.length()){
+        if(s[i]=='1'){
+            int cnt=0;
+            while(s[i]=='1'){
+                cnt++;
+                i++;
+            }
+            ar.pb(cnt);
+        }
+        i++;
     }
-    cout<<total<<endl;
+
+    sort(ar.begin(),ar.end(),greater<int>());
+    ll score=0;
+    for(i=0;i<ar.size();i++){
+        if(i%2==0)score+=ar[i];
+    }
+    cout<<score<<endl;
+
 }
 
 int main(){

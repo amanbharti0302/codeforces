@@ -2,12 +2,11 @@
 //coded by AMAN BHARTI NIT PATNA
 //ALL RIGHTS RESERVED
 //ECE 2K18
-///////////////////SOLVED AFTER WATCHING TUTORIAL
 
 #include<bits/stdc++.h>
 using namespace std;
 
-//#define home
+#define home
 #define TASK "soln"
 #define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
 #define pb push_back
@@ -23,18 +22,23 @@ void solve(){
     cin>>n;
     string s;
     cin>>s;
-    map<int,int> m;
-    ll total =0;
-    m[0]=1;
-    int sum=0;
+
+    int sum=0,lcnt=0,gcnt=0;
+
     for(int i=0;i<n;i++){
-        int x=s[i]-'0';
-        x--;
-        sum+=x;
-        total+=(ll)m[sum];
-        m[sum]++;
+
+        if(sum>i+1){sum=0;lcnt=0;}
+        else if(sum==0){}
+        else lcnt++;
+        
+        sum+=(s[i]-'0');
+        
+        if((s[i]-'0')<=i+1&&s[i]!='0')gcnt++;
+
+        gcnt=max(gcnt,lcnt);
     }
-    cout<<total<<endl;
+
+    cout<<gcnt<<endl;
 }
 
 int main(){
