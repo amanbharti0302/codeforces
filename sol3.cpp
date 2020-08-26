@@ -2,7 +2,6 @@
 //coded by AMAN BHARTI NIT PATNA
 //ALL RIGHTS RESERVED
 //ECE 2K18
-
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -16,29 +15,26 @@ using namespace std;
 #define foo for(int i=1;i<=n;i++)
 #define mod 1000000007
 
+int dp[1000005];
+
+
+int cal(int a[],int n,int cnt,int sum){
+    if(n<1){return 0;}
+    
+    if(a[n]==sum)return min(cnt,cal(a,n-1,cnt,sum));
+    return min(cal(a,n-1,cnt+1,sum),cal(a,n-1,cnt,sum));
+}
 
 void solve(){
-    int n;
+    memset(dp,-1,sizeof(dp));
+    int n,sum=0;
     cin>>n;
-    string s;
-    cin>>s;
-
-    int sum=0,lcnt=0,gcnt=0;
-
-    for(int i=0;i<n;i++){
-
-        if(sum>i+1){sum=0;lcnt=0;}
-        else if(sum==0){}
-        else lcnt++;
-        
-        sum+=(s[i]-'0');
-        
-        if((s[i]-'0')<=i+1&&s[i]!='0')gcnt++;
-
-        gcnt=max(gcnt,lcnt);
-    }
-
-    cout<<gcnt<<endl;
+    int a[n+1];
+    foo{cin>>a[i];sum=sum|a[i];}
+    sort(a+1,a+n+1);
+    cout<<cal(a,n,1,sum)<<" ";
+    cout<<sum;
+    br;
 }
 
 int main(){
