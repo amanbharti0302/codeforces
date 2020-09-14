@@ -1,92 +1,76 @@
-//CODEFORCES:-
-//coded by AMAN BHARTI NIT PATNA
-//ALL RIGHTS RESERVED
-//ECE 2K18
-#include<bits/stdc++.h>
-using namespace std;
+    //CODEFORCES:-
+    //ECE 2K18
 
-#define home
-#define TASK "soln"
-#define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
-#define pb push_back
-#define ll long long int
-#define br cout<<endl;
-#define fo for(int i=0;i<n;i++)
-#define foo for(int i=1;i<=n;i++)
-#define mod 1000000007
+    #include<bits/stdc++.h>
+    #include<ext/pb_ds/assoc_container.hpp>
+    #include<ext/pb_ds/tree_policy.hpp>
+    using namespace std;
+    using namespace __gnu_pbds;
 
-list<pair<int,int>>l;
+    #define home
+    #define TASK "soln"
+    #define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
+    #define pb push_back
+    #define pp pop_back
+    #define ll long long int
+    #define ull unsigned long long
+    #define br cout<<endl;
+    #define fo for(int i=0;i<n;i++)
+    #define foo for(int i=1;i<=n;i++)
+    #define rep(i,a,n) for(int i=a;i<n;i++)
+    #define mod 1000000007
+    ll gcd(ll a,ll b);
+    ll power(ll a,ll b);
+    ll powerwithmod(ll a,ll b);
 
-void addEdge(int u,int v){
-    l.pb(make_pair(u,v));
-}
+    void solve(){
+        ll n,s;
+        cin>>n>>s;
 
-int findset(int i,vector<int> &parent){
-    if(parent[i]==-1)return i;
-    parent[i] = findset(parent[i],parent);   
-    return parent[i];
-}
+        if(n<=s){cout<<0<<endl;return;}
 
-void unionset(int u,int v,vector<int> &parent,vector<int> &rank){
-    int s1 = findset(u,parent);
-    int s2 = findset(v,parent);
+        ll ans =0;
+        ll i=1;
+        ll sum=0;
+        ll t=n;
+        while(t>0){sum+=t%10;t=t/10;}
+        //cout<<sum<<" ";
 
-    if(s1!=s2){
-        if(rank[s1]<rank[s2]){
-            parent[s1]=s2;
-            rank[s2]+=rank[s1];
-        }
-        else{
-            parent[s1]=s2;
-            rank[s1]+=rank[s2];
-        }
+        // while(sum>s){
+        //     ans+=(9-(n%10)+1)*i;
+        //     sum=sum-(n%10);
+        //     sum++;
+        //     n=n/10;
+        //     n++;
+        //     i=i*10;
+        //     // cout<<sum<<" ";
+        // }
+
+        cout<<ans;
+        br;
     }
 
-}
+    int main(){
+        #ifdef home
+            assert(freopen(TASK".in","r",stdin));
+            assert(freopen(TASK".out","w",stdout));
+        #endif
+    
+        ios::sync_with_stdio(false);
+        cin.tie(NULL);
+    
+        int t;
+        cin>>t;
+        while(t-->0)
+        solve();
+    
+        #ifdef home
+            eprintf("Time: %d ms\n", (int)(clock() * 1000. / CLOCKS_PER_SEC));
+        #endif
 
-bool contain_cycle(int size){
-    vector<int> parent(size+1,-1);
-    vector<int> rank(size+1,1);
-
-    for(auto it:l){
-        int u = it.first;
-        int v = it.second;
-
-        int s1 = findset(u,parent);
-        int s2 = findset(v,parent);
-
-        if(s1!=s2){unionset(u,v,parent,rank);}
-        else return true;
+        return 0;
     }
-    return false;
-}
 
-void solve(){
-    addEdge(1,2);
-    addEdge(2,3);
-    addEdge(1,4);
-    addEdge(4,1);
-    cout<<contain_cycle(4);
-    br;
-}
-
-int main(){
-	#ifdef home
-        assert(freopen(TASK".in","r",stdin));
-        assert(freopen(TASK".out","w",stdout));
-    #endif
-
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    // int t;
-    // cin>>t;
-    // while(t-->0)
-    solve();
-
-    #ifdef home
-        eprintf("Time: %d ms\n", (int)(clock() * 1000. / CLOCKS_PER_SEC));
-    #endif
-
-    return 0;
-}
+    ll gcd(ll a,ll b) {if(b==0)return a;return gcd(b,a%b);}
+    ll powerwithmod(ll a,ll b) {ll res=1;while(b>0){if(b&1)res=(res*a)%mod;a=(a*a)%mod;b>>=1;}return res%mod;}
+    ll power(ll a,ll b) {ll res=1;while(b>0){if(b&1)res=(res*a);a=(a*a);b>>=1;}return res;}
